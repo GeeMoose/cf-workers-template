@@ -1,0 +1,19 @@
+{
+  "name": "cf-workers-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "wrangler deploy ./src/index.ts",
+    "log": "wrangler tail"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.7.2",
+    "wrangler": "^3.92.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241205.0"
+  }
+}
