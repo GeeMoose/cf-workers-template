@@ -36,7 +36,7 @@ export enum TaskStatus {
 
 export type TaskMessage = {
 	task_id: string;
-	raster_url: string;
+	raster_url: string | z.ZodString;
 	timestamp: number;
 };
 
