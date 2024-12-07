@@ -1,12 +1,25 @@
+#:schema node_modules/wrangler/config-schema.json
 name = "cf-workers-template"
+main = "./src/index.ts"
 compatibility_date = "2024-04-08"
 
+# Bind a Queue producer. Use this binding to schedule an arbitrary task that may be processed later by a Queue consumer.
+# Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#queues
 [[queues.producers]]
-queue = "my-queue"
+queue = "a1d-vectorization-test"
 binding = "MY_QUEUE"
 
+# Bind a Queue consumer. Queue Consumers can retrieve tasks scheduled by Producers to act on them.
+# Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#queues
 [[queues.consumers]]
-queue = "my-queue"
-max_batch_size = 1
-max_batch_timeout = 60
-max_retries = 2
+queue = "a1d-vectorization-test"
+max_batch_size = 3
+max_batch_timeout = 0
+max_retries = 1
+max_concurrent = 10
+
+# Bind an R2 Bucket. Use R2 to store arbitrarily large blobs of data, such as files.
+# Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#r2-buckets
+[[r2_buckets]]
+binding = "MY_BUCKET"
+bucket_name = "a1d-vectorization-prod"
