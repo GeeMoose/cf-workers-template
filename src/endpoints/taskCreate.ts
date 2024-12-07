@@ -13,8 +13,8 @@ export class SendMessage extends OpenAPIRoute {
 
 		request: {
 			body: contentJson({
-				// raster_url means the input raster image url
-				raster_url: z.string().url(),
+				// image_url means the input raster image url
+				image_url: z.string().url(),
 				// Options is a dict structure, which is optional.
 				options: z
 					.record(z.string(), z.any())
@@ -27,12 +27,12 @@ export class SendMessage extends OpenAPIRoute {
 		const data = await this.getValidatedData<typeof this.schema>();
 		const task_id = nanoid();
 		const url = new URL(c.req.url);
-			const msg = {
-				task_id,
-				raster_url: data.body.raster_url,
-				timestamp: Date.now(),
-			} as TaskMessage;
-			await c.env.MY_QUEUE.send(msg);
+		const msg = {
+			task_id,
+			raster_url: data.body.image_url,
+			timestamp: Date.now(),
+		} as TaskMessage;
+		await c.env.MY_QUEUE.send(msg);
 
 		return c.json({
 			id: task_id,

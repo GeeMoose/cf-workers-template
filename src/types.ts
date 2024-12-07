@@ -1,10 +1,6 @@
 import { convertParams } from 'chanfana';
 import { z } from 'zod';
-// import { TaskStore } from '../../db-service/src/TaskStore';
-// import { ServerStore } from '../../db-service/src/ServerStore';
-// import { InstanceStore } from '../../db-service/src/InstanceStore';
-// import { JwtService } from '../../common-service/src/JwtService';
-// import { R2Service } from '../../common-service/src/R2Service';
+import { R2Service } from './utils';
 
 export const PREMIUM_SCALE = 8;
 export const R2_PREFIX = 'uploads';
@@ -25,11 +21,7 @@ export function FileBody(params?: StringParameterType): z.ZodString {
 }
 
 type NewEnv = Omit<Env, 'TASK_STATUS_DURABLE_OBJECT'> & {
-	// TASK_STORE: Service<TaskStore>;
-	// SERVER_STORE: Service<ServerStore>;
-	// INSTANCE_STORE: Service<InstanceStore>;
-	// JWT_SERVICE: Service<JwtService>;
-	// R2_SERVICE: Service<R2Service>;
+	R2_SERVICE: Service<R2Service>;
 };
 export type Bindings = Pick<NewEnv, keyof NewEnv>;
 
