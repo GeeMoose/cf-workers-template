@@ -3,6 +3,7 @@ import { cache } from 'hono/cache';
 
 import app from './app';
 
+import { UploadFile } from './endpoints/FileUpload';
 import { SendMessage } from './endpoints/taskCreate';
 
 
@@ -24,6 +25,7 @@ export const options = {
 
 const openapi = fromHono(app, options);
 
+openapi.post('/api/uploads/:file_name', UploadFile);
 openapi.post('/api/task', SendMessage);
 
 export default {

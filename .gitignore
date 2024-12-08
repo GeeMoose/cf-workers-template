@@ -2,4 +2,5 @@
 /package-lock.json
 .wrangler
 
+**/worker-configuration.d.ts
 .dev.vars

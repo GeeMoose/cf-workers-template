@@ -31,7 +31,7 @@ export class SendMessage extends OpenAPIRoute {
 			task_id,
 			raster_url: data.body.image_url,
 			timestamp: Date.now(),
-		};
+		} as TaskMessage;
 		await c.env.MY_QUEUE.send(msg);
 
 		return c.json({
